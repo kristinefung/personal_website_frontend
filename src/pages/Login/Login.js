@@ -1,26 +1,35 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState } from 'react';
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [data, setData] = useState({});
-
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      username: username,
-      password: password
-    })
-  };
-
+  const [alert, setAlert] = useState('');
   async function fetchData() {
-    const data = await fetch('http://localhost:4000/api/login', requestOptions);
-    const json = await data.json();
 
-    setData(json);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    };
+    const data = await fetch('http://localhost:4000/api/login', requestOptions);
+    if (!data.ok) {
+      setAlert("INTERNAT_SERVER_ERROR");
+      return;
+    }
+
+    const json = await data.json();
     console.log(json);
+    if (json.status !== 0) {
+      setAlert(json.status_code);
+      return;
+    }
+    setAuth(true);
+    localStorage.setItem("token", JSON.stringify(json.data.user_session_token));
+    window.location.reload();
   }
 
 
@@ -50,6 +59,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div>{alert}</div>
           <button type="submit">Login</button>
         </form>
       </div>
