@@ -2,8 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 
 import Home from 'pages/Home/Home';
-import Login from 'pages/Login/Login'
+import Login from 'pages/Login/Login';
 import Dashboard from 'pages/Dashboard/Dashboard';
+
+import 'App.css';
 
 function App() {
 

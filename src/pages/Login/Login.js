@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
+import 'pages/Login/Login.css'
+
 const Login = ({ setAuth }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [alert, setAlert] = useState('');
+  const [message, setMessage] = useState('');
   async function fetchData() {
 
     const requestOptions = {
@@ -17,14 +19,14 @@ const Login = ({ setAuth }) => {
     };
     const data = await fetch('http://localhost:4000/api/login', requestOptions);
     if (!data.ok) {
-      setAlert("INTERNAT_SERVER_ERROR");
+      setMessage("INTERNAT_SERVER_ERROR");
       return;
     }
 
     const json = await data.json();
     console.log(json);
     if (json.status !== 0) {
-      setAlert(json.status_code);
+      setMessage(json.message);
       return;
     }
     setAuth(true);
@@ -44,26 +46,34 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div>{alert}</div>
-          <button type="submit">Login</button>
-        </form>
+    <>
+      <div id="login-page">
+        <div className="login-container">
+          <div className='head'>
+            Login
+          </div>
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Login</button>
+            <div className='message'>
+              {message}
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
+
   );
 };
 
