@@ -1,8 +1,5 @@
-body {
+body#login-page {
     background: linear-gradient(to right, #376ae3, #03287c);
-}
-
-#login-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +12,7 @@ body {
 .login-container {
     background: #FFFFFF;
     width: 350px;
-    height: 550px;
+    height: 500px;
     border-radius: 5px;
 }
 

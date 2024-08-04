@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import 'pages/Login/Login.css'
 
 const Login = ({ setAuth }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [message, setMessage] = useState('');
@@ -13,7 +13,7 @@ const Login = ({ setAuth }) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: username,
+        email: email,
         password: password
       })
     };
@@ -37,7 +37,7 @@ const Login = ({ setAuth }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
+    console.log('Username:', email);
     console.log('Password:', password);
     fetchData();
 
@@ -45,32 +45,31 @@ const Login = ({ setAuth }) => {
 
   };
 
+  document.body.setAttribute('id', 'login-page');
   return (
     <>
-      <div id="login-page">
-        <div className="login-container">
-          <div className='head'>
-            Login
-          </div>
-          <form className="form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Login</button>
-            <div className='message'>
-              {message}
-            </div>
-          </form>
+      <div className="login-container">
+        <div className='head'>
+          Login
         </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Login</button>
+          <div className='message'>
+            {message}
+          </div>
+        </form>
       </div>
     </>
 
