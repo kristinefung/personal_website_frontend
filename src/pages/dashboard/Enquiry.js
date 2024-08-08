@@ -42,27 +42,36 @@ const Enquiry = () => {
   document.body.setAttribute('id', 'dashboard-enquiry-page');
   return (
     <>
-      <div className='dashboard'>
-        <Header />
-        <div className='dashboard-body'>
-          <Sidebar />
-          <div className='dashboard-main'>
-            This is Enquiry
-            <div>
-              {isLoading ? (
-                <div>Loading...</div>
-              ) : error ? (
-                <div>Error: {error.message}</div>
-              ) : (
-                <ul>
-                  {data.data.map((enquiry) => {
-                    return <li>ID: {enquiry.id}, Name: {enquiry.name}</li>;
-                  })}
-                </ul>
-              )}
-            </div>
-          </div>
-        </div>
+      <h1>Enquiries</h1>
+      <div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : (
+          <table id="enquiry-table" className='dashboard-table'>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Company Name</th>
+              <th>Comment</th>
+              <th>Status</th>
+              <th>Created At</th>
+            </tr>
+            {data.data.map((enquiry) => {
+              return (
+                <tr>
+                  <td>{enquiry.id}</td>
+                  <td>{enquiry.name}</td>
+                  <td>{enquiry.company_name}</td>
+                  <td>{enquiry.comment}</td>
+                  <td>{enquiry.status_id}</td>
+                  <td>{enquiry.created_at}</td>
+                </tr>
+              )
+            })}
+          </table>
+        )}
       </div>
     </>
   )

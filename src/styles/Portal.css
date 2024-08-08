@@ -39,7 +39,7 @@
 }
 
 /******************************************** 
-*                  Sidebar
+*              Body-Sidebar
 ********************************************/
 .dashboard-sidebar {
     width: 200px;
@@ -89,4 +89,46 @@
 
 .dashboard-sidebar .menu a i {
     font-size: 1.2rem;
+}
+
+/******************************************** 
+*                Body-Main
+********************************************/
+
+.dashboard-main {
+    width: 100%;
+    padding: 0 30px;
+    background: #f1f3f5;
+}
+
+.dashboard-main h1 {
+    font-size: 24px;
+}
+
+/******************************************** 
+*                Table
+********************************************/
+.dashboard-table {
+    border-radius: 3px;
+    border-spacing: 0px 3px;
+}
+
+.dashboard-table td,
+.dashboard-table th {
+    min-width: 50px;
+    padding: 8px 15px;
+
+}
+
+.dashboard-table th {
+    text-align: left;
+    background-color: #eaecf5;
+}
+
+.dashboard-table tr {
+    background: #FFF;
+}
+
+.dashboard-table tr:hover {
+    background-color: #f6f8ff;
 }

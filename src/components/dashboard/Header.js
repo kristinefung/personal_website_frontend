@@ -1,4 +1,4 @@
-import 'styles/Dashboard.css'
+import 'styles/Portal.css'
 
 const Header = () => {
   const handleLogout = (e) => {

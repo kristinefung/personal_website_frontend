@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import DashboardHome from 'pages/dashboard/DashboardHome';
+// Dashboard related
+import Portal from "pages/dashboard/Portal";
+import Dashboard from 'pages/dashboard/Dashboard';
 import Enquiry from 'pages/dashboard/Enquiry';
 import User from 'pages/dashboard/User';
 import Profile from 'pages/dashboard/Profile';
@@ -29,24 +31,18 @@ function App() {
           ? <Login setAuth={setAuth} />
           : <Navigate to="/dashboard" replace />
         } />
-        <Route path="/dashboard" element={isAuthenticated
-          ? <DashboardHome />
+
+        <Route path='/dashboard' element={isAuthenticated
+          ? <Portal />
           : <Navigate to="/login" replace />
-        } />
-        <Route path="/dashboard/user" element={isAuthenticated
-          ? <User />
-          : <Navigate to="/login" replace />
-        } />
-        <Route path="/dashboard/profile" element={isAuthenticated
-          ? <Profile />
-          : <Navigate to="/login" replace />
-        } />
-        <Route path="/dashboard/enquiry" element={isAuthenticated
-          ? <Enquiry />
-          : <Navigate to="/login" replace />
-        } />
+        } >
+          <Route path='' element={<Dashboard />} />
+          <Route path='user' element={<User />} />
+          <Route path='profile' element={<Profile />} />
+          <Route path='enquiry' element={<Enquiry />} />
+        </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

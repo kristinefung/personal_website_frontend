@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faRectangleList, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
-import 'styles/Dashboard.css'
+import 'styles/Portal.css'
 
 const Sidebar = () => {
   const location = useLocation();
@@ -12,19 +12,19 @@ const Sidebar = () => {
     <>
       <div className="dashboard-sidebar">
         <ul className="menu">
-          <li className={location.pathname === '/dashboard/user' ? 'active' : ''}>
+          <li className={location.pathname.startsWith('/dashboard/user') ? 'active' : ''}>
             <a href="/dashboard/user">
               <FontAwesomeIcon icon={faUser} />
               <span>User</span>
             </a>
           </li>
-          <li className={location.pathname === '/dashboard/profile' ? 'active' : ''}>
+          <li className={location.pathname.startsWith('/dashboard/profile') ? 'active' : ''}>
             <a href="/dashboard/profile">
               <FontAwesomeIcon icon={faIdCard} />
               <span>Profile</span>
             </a>
           </li>
-          <li className={location.pathname === '/dashboard/enquiry' ? 'active' : ''}>
+          <li className={location.pathname.startsWith('/dashboard/enquiry') ? 'active' : ''}>
             <a href="/dashboard/enquiry">
               <FontAwesomeIcon icon={faRectangleList} />
               <span>Enquiry</span>
