@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import 'pages/Login/Login.css'
+import 'styles/Login.css'
 
 const Login = ({ setAuth }) => {
   const [email, setEmail] = useState('');
@@ -30,7 +30,8 @@ const Login = ({ setAuth }) => {
       return;
     }
     setAuth(true);
-    localStorage.setItem("token", JSON.stringify(json.data.user_session_token));
+    console.log(json.data.user_session_token);
+    localStorage.setItem("token", json.data.user_session_token);
     window.location.reload();
   }
 

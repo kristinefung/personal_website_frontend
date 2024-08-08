@@ -1,0 +1,92 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+/******************************************** 
+*                  Header
+********************************************/
+
+.dashboard-header {
+    width: 100%;
+    height: 50px;
+    background: #1d2733;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header .logo {
+    padding: 0 20px;
+}
+
+.dashboard-header .logo a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.dashboard-header .user-profile {
+    padding: 0 20px;
+}
+
+/******************************************** 
+*                  Body
+********************************************/
+
+.dashboard-body {
+    display: flex;
+}
+
+/******************************************** 
+*                  Sidebar
+********************************************/
+.dashboard-sidebar {
+    width: 200px;
+    height: calc(100vh - 50px);
+    ;
+    padding: 0;
+    color: #FFFFFF;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background: #1d2733;
+    z-index: 99;
+}
+
+.dashboard-sidebar .menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-sidebar .menu li {
+    padding: 0;
+    margin: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.dashboard-sidebar .menu li:hover,
+.dashboard-sidebar .menu li.active {
+    background: #2a86b8;
+    cursor: pointer;
+}
+
+.dashboard-sidebar .menu a {
+    padding: 15px 28px;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.dashboard-sidebar .menu a span {
+    overflow: hidden;
+}
+
+.dashboard-sidebar .menu a i {
+    font-size: 1.2rem;
+}
