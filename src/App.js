@@ -6,7 +6,8 @@ import Login from 'pages/Login';
 // Dashboard related
 import Portal from "pages/dashboard/Portal";
 import Dashboard from 'pages/dashboard/Dashboard';
-import Enquiry from 'pages/dashboard/Enquiry';
+import EnquiryList from 'pages/dashboard/enquiry/EnquiryList';
+import EnquiryEdit from 'pages/dashboard/enquiry/EnquiryEdit';
 import User from 'pages/dashboard/User';
 import Profile from 'pages/dashboard/Profile';
 
@@ -39,7 +40,8 @@ function App() {
           <Route path='' element={<Dashboard />} />
           <Route path='user' element={<User />} />
           <Route path='profile' element={<Profile />} />
-          <Route path='enquiry' element={<Enquiry />} />
+          <Route path='enquiry' element={<EnquiryList />} />
+          <Route path='enquiry/:id' element={<EnquiryEdit />} />
         </Route>
       </Routes>
     </BrowserRouter >
