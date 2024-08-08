@@ -4,41 +4,30 @@ import { json } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 
+import EnquiryService from 'services/EnquiryService';
+
 const EnquiryList = () => {
 
-  const [data, setData] = useState([]);
+  const [enquiries, setEnquiries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const authToken = localStorage.getItem("token");
+  const enquiryService = EnquiryService();
 
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        }
-      };
-      console.log(requestOptions);
+  useEffect(() => {
+    const fetchEnquiries = async () => {
+      setIsLoading(true);
       try {
-        const response = await fetch('http://localhost:4000/api/enquiries', requestOptions);
-        const jsonData = await response.json();
-        console.log(jsonData);
-        setData(jsonData);
-      } catch (error) {
-        setError(error);
+        const enquiries = await enquiryService.getAllEnquiries();
+        setEnquiries(enquiries);
+      } catch (err) {
+        setError(err.message);
       } finally {
         setIsLoading(false);
       }
     };
-
-    fetchData();
+    fetchEnquiries();
   }, []);
-
-  console.log(isLoading);
 
   document.body.setAttribute('id', 'dashboard-enquiry-page');
   return (
@@ -59,7 +48,7 @@ const EnquiryList = () => {
               <th>Created At</th>
               <th>Details</th>
             </tr>
-            {data.data.map((enquiry) => {
+            {enquiries.map((enquiry) => {
               return (
                 <tr>
                   <td>{enquiry.name}</td>

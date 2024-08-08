@@ -1,31 +1,24 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import EnquiryService from 'services/EnquiryService';
+
 const EnquiryEdit = () => {
-    const [data, setData] = useState([]);
+    const [enquiry, setEnquiry] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const params = useParams();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            const authToken = localStorage.getItem("token");
+    const enquiryService = EnquiryService();
 
-            const requestOptions = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}`
-                }
-            };
-            console.log(requestOptions);
+    useEffect(() => {
+        const fetchEnquiry = async () => {
+            setIsLoading(true);
+
             try {
-                const response = await fetch(`http://localhost:4000/api/enquiries/${params.id}`, requestOptions);
-                const jsonData = await response.json();
-                console.log(jsonData);
-                setData(jsonData);
+                const enquiry = await enquiryService.getEnquiryById(params.id);
+                setEnquiry(enquiry);
             } catch (error) {
                 setError(error);
             } finally {
@@ -33,7 +26,7 @@ const EnquiryEdit = () => {
             }
         };
 
-        fetchData();
+        fetchEnquiry();
     }, []);
 
 
@@ -45,9 +38,9 @@ const EnquiryEdit = () => {
                 <div>Error: {error.message}</div>
             ) : (
                 <div>
-                    <div>{data.data.id}</div>
-                    <div>{data.data.company_name}</div>
-                    <div>{data.data.comment}</div>
+                    <h1>Enquiry #{enquiry.id}</h1>
+                    <div>{enquiry.company_name}</div>
+                    <div>{enquiry.comment}</div>
                 </div>
             )}
         </>
