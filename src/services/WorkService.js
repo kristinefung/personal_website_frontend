@@ -22,9 +22,25 @@ const WorkService = () => {
         return work;
     };
 
+    const updateWorkById = async (id, work) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const workResp = await workApi.updateWorkById(authToken, id, work);
+        const workRespJson = workResp.data;
+        return workRespJson;
+    };
+
+    const createWork = async (work) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const workResp = await workApi.createWork(authToken, work);
+        const workRespJson = workResp.data;
+        return workRespJson;
+    };
+
     return {
         getAllWorks,
-        getWorkById
+        getWorkById,
+        updateWorkById,
+        createWork
     };
 };
 

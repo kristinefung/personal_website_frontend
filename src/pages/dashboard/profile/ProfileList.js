@@ -53,6 +53,9 @@ const ProfileList = () => {
   return (
     <>
       <h1>Works</h1>
+      <a href='/dashboard/profile/work/create'>
+        Create Work
+      </a>
       <div>
         {isLoadingWork ? (
           <div>Loading...</div>
@@ -78,7 +81,7 @@ const ProfileList = () => {
                     <td>{work.end_year_month}</td>
                     <td>{work.created_at}</td>
                     <td>
-                      <a href={'/dashboard/profile/work/' + work.id}>
+                      <a href={'/dashboard/profile/work/edit/' + work.id}>
                         <FontAwesomeIcon icon={faPen} />
                       </a>
                     </td>
@@ -92,6 +95,9 @@ const ProfileList = () => {
 
 
       <h1>Educations</h1>
+      <a href='/dashboard/profile/education/create'>
+        Create Education
+      </a>
       <div>
         {isLoadingEducation ? (
           <div>Loading...</div>
@@ -117,7 +123,7 @@ const ProfileList = () => {
                     <td>{education.end_year_month}</td>
                     <td>{education.created_at}</td>
                     <td>
-                      <a href={'/dashboard/profile/education/' + education.id}>
+                      <a href={'/dashboard/profile/education/edit/' + education.id}>
                         <FontAwesomeIcon icon={faPen} />
                       </a>
                     </td>

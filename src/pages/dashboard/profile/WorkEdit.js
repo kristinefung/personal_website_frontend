@@ -3,33 +3,36 @@ import { useState, useEffect } from 'react';
 
 import WorkService from 'services/WorkService';
 
+import WorkForm from 'components/dashboard/WorkForm';
+
 const WorkEdit = () => {
-    const [work, setWork] = useState([]);
+    const [work, setWork] = useState({
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const params = useParams();
 
     const workService = WorkService();
+    console.log(work);
+
+    const fetchGetWork = async () => {
+        setIsLoading(true);
+
+        try {
+            const workRes = await workService.getWorkById(params.id);
+            console.log(workRes);
+            setWork(workRes);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchWork = async () => {
-            setIsLoading(true);
-
-            try {
-                const work = await workService.getWorkById(params.id);
-                console.log(work);
-                setWork(work);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchWork();
+        fetchGetWork();
     }, []);
-
 
     return (
         <>
@@ -40,9 +43,9 @@ const WorkEdit = () => {
             ) : (
                 <div>
                     <h1>Work #{work.id}</h1>
-                    <div>{work.title}</div>
-                    <div>{work.company_name}</div>
+                    <WorkForm action='UPDATE' workData={work} />
                 </div>
+
             )}
         </>
     );

@@ -22,9 +22,25 @@ const EducationService = () => {
         return education;
     };
 
+    const updateEducationById = async (id, education) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const educationResp = await educationApi.updateEducationById(authToken, id, education);
+        const educationRespJson = educationResp.data;
+        return educationRespJson;
+    };
+
+    const createEducation = async (education) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const educationResp = await educationApi.createEducation(authToken, education);
+        const educationRespJson = educationResp.data;
+        return educationRespJson;
+    };
+
     return {
         getAllEducations,
-        getEducationById
+        getEducationById,
+        updateEducationById,
+        createEducation
     };
 };
 

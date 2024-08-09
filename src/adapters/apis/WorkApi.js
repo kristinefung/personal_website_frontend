@@ -56,8 +56,8 @@ const WorkApi = (baseUrl) => {
         throw new Error(`HTTP error ${response.status}`);
       }
 
-      const work = await response.json();
-      return work;
+      const workRes = await response.json();
+      return workRes;
     } catch (error) {
       throw error;
     }
@@ -78,8 +78,8 @@ const WorkApi = (baseUrl) => {
         throw new Error(`HTTP error ${response.status}`);
       }
 
-      const work = await response.json();
-      return work;
+      const workRes = await response.json();
+      return workRes;
     } catch (error) {
       throw error;
     }

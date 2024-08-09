@@ -3,33 +3,37 @@ import { useState, useEffect } from 'react';
 
 import EducationService from 'services/EducationService';
 
+import EducationForm from 'components/dashboard/EducationForm';
+
 const EducationEdit = () => {
-    const [education, setEducation] = useState([]);
+    const [education, setEducation] = useState({
+
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const params = useParams();
 
     const educationService = EducationService();
+    console.log(education);
+
+    const fetchGetEducation = async () => {
+        setIsLoading(true);
+
+        try {
+            const educationRes = await educationService.getEducationById(params.id);
+            console.log(educationRes);
+            setEducation(educationRes);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchEducation = async () => {
-            setIsLoading(true);
-
-            try {
-                const education = await educationService.getEducationById(params.id);
-                console.log(education);
-                setEducation(education);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchEducation();
+        fetchGetEducation();
     }, []);
-
 
     return (
         <>
@@ -40,9 +44,10 @@ const EducationEdit = () => {
             ) : (
                 <div>
                     <h1>Education #{education.id}</h1>
-                    <div>{education.degree}</div>
-                    <div>{education.school_name}</div>
+
+                    <EducationForm action='UPDATE' educationData={education} />
                 </div>
+
             )}
         </>
     );
