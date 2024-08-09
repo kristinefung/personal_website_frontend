@@ -9,7 +9,9 @@ import Dashboard from 'pages/dashboard/Dashboard';
 import EnquiryList from 'pages/dashboard/enquiry/EnquiryList';
 import EnquiryEdit from 'pages/dashboard/enquiry/EnquiryEdit';
 import User from 'pages/dashboard/User';
-import Profile from 'pages/dashboard/Profile';
+import ProfileList from 'pages/dashboard/profile/ProfileList';
+import WorkEdit from "pages/dashboard/profile/WorkEdit";
+import EducationEdit from "pages/dashboard/profile/EducationEdit";
 
 import 'App.css';
 
@@ -39,7 +41,9 @@ function App() {
         } >
           <Route path='' element={<Dashboard />} />
           <Route path='user' element={<User />} />
-          <Route path='profile' element={<Profile />} />
+          <Route path='profile' element={<ProfileList />} />
+          <Route path='profile/work/:id' element={<WorkEdit />} />
+          <Route path='profile/education/:id' element={<EducationEdit />} />
           <Route path='enquiry' element={<EnquiryList />} />
           <Route path='enquiry/:id' element={<EnquiryEdit />} />
         </Route>

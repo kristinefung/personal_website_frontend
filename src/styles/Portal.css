@@ -43,8 +43,8 @@
 ********************************************/
 .dashboard-sidebar {
     width: 200px;
-    height: calc(100vh - 50px);
-    ;
+    min-height: calc(100vh - 50px);
+    height: 100%;
     padding: 0;
     color: #FFFFFF;
     overflow: hidden;

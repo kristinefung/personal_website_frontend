@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faRectangleList, faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faPaperPlane, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
 import 'styles/Portal.css'
 
@@ -26,7 +26,7 @@ const Sidebar = () => {
           </li>
           <li className={location.pathname.startsWith('/dashboard/enquiry') ? 'active' : ''}>
             <a href="/dashboard/enquiry">
-              <FontAwesomeIcon icon={faRectangleList} />
+              <FontAwesomeIcon icon={faPaperPlane} />
               <span>Enquiry</span>
             </a>
           </li>
