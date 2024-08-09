@@ -85,11 +85,34 @@ const WorkApi = (baseUrl) => {
     }
   };
 
+  const deleteWorkById = async (authToken, id, work) => {
+    try {
+      const response = await fetch(`${baseUrl}/works/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(work),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const workRes = await response.json();
+      return workRes;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     getAllWorks,
     getWorkById,
     createWork,
     updateWorkById,
+    deleteWorkById,
   };
 };
 

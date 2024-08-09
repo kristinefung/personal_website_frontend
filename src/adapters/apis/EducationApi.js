@@ -85,11 +85,34 @@ const EducationApi = (baseUrl) => {
     }
   };
 
+  const deleteEducationById = async (authToken, id, education) => {
+    try {
+      const response = await fetch(`${baseUrl}/educations/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(education),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const educationRes = await response.json();
+      return educationRes;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     getAllEducations,
     getEducationById,
     createEducation,
     updateEducationById,
+    deleteEducationById,
   };
 };
 

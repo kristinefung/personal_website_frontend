@@ -12,10 +12,12 @@ const ProfileList = () => {
   const [works, setWorks] = useState([]);
   const [isLoadingWork, setIsLoadingWork] = useState(true);
   const [workError, setWorkError] = useState(null);
+  const [checkedWorkIds, setCheckedWorkIds] = useState([]);
 
   const [educations, setEducations] = useState([]);
   const [isLoadingEducation, setIsLoadingEducation] = useState(true);
   const [educationError, setEducationError] = useState(null);
+  const [checkedEducationIds, setCheckedEducationIds] = useState([]);
 
   const workService = WorkService();
   const educationService = EducationService();
@@ -44,6 +46,40 @@ const ProfileList = () => {
     }
   };
 
+  const handleWorkChecked = (workId) => {
+    if (checkedWorkIds.includes(workId)) {
+      setCheckedWorkIds(checkedWorkIds.filter((id) => id !== workId));
+    } else {
+      setCheckedWorkIds([...checkedWorkIds, workId]);
+    }
+  };
+
+  const handleEducationChecked = (eduId) => {
+    if (checkedEducationIds.includes(eduId)) {
+      setCheckedEducationIds(checkedEducationIds.filter((id) => id !== eduId));
+    } else {
+      setCheckedEducationIds([...checkedEducationIds, eduId]);
+    }
+  };
+
+  const handleDeleteWork = async () => {
+    new Promise((resolve, reject) => {
+      checkedWorkIds.forEach(async (id, index, array) => {
+        await workService.deleteWorkById(id);
+        if (index === array.length - 1) resolve();
+      });
+    }).then(() => fetchWorks());
+  };
+
+  const handleDeleteEducation = async () => {
+    new Promise((resolve, reject) => {
+      checkedEducationIds.forEach(async (id, index, array) => {
+        await educationService.deleteEducationById(id);
+        if (index === array.length - 1) resolve();
+      });
+    }).then(() => fetchEducations());
+  };
+
   useEffect(() => {
     fetchWorks();
     fetchEducations();
@@ -56,6 +92,7 @@ const ProfileList = () => {
       <a href='/dashboard/profile/work/create'>
         Create Work
       </a>
+      <button onClick={handleDeleteWork}>Delete Works</button>
       <div>
         {isLoadingWork ? (
           <div>Loading...</div>
@@ -65,6 +102,7 @@ const ProfileList = () => {
           <table id="work-table" className='dashboard-table'>
             <tbody>
               <tr>
+                <th><input type="checkbox" /></th>
                 <th>Title</th>
                 <th>Company Name</th>
                 <th>Start Date</th>
@@ -75,6 +113,11 @@ const ProfileList = () => {
               {works.map((work) => {
                 return (
                   <tr key={work.id}>
+                    <td>
+                      <input type="checkbox"
+                        onChange={() => handleWorkChecked(work.id)}
+                      />
+                    </td>
                     <td>{work.title}</td>
                     <td>{work.company_name}</td>
                     <td>{work.start_year_month}</td>
@@ -98,6 +141,7 @@ const ProfileList = () => {
       <a href='/dashboard/profile/education/create'>
         Create Education
       </a>
+      <button onClick={handleDeleteEducation}>Delete Educations</button>
       <div>
         {isLoadingEducation ? (
           <div>Loading...</div>
@@ -107,8 +151,9 @@ const ProfileList = () => {
           <table id="education-table" className='dashboard-table'>
             <tbody>
               <tr>
-                <th>Title</th>
-                <th>Company Name</th>
+                <th><input type="checkbox" /></th>
+                <th>Degree</th>
+                <th>School Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Created At</th>
@@ -117,6 +162,11 @@ const ProfileList = () => {
               {educations.map((education) => {
                 return (
                   <tr key={education.id}>
+                    <td>
+                      <input type="checkbox"
+                        onChange={() => handleEducationChecked(education.id)}
+                      />
+                    </td>
                     <td>{education.degree}</td>
                     <td>{education.school_name}</td>
                     <td>{education.start_year_month}</td>

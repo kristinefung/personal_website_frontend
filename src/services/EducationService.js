@@ -36,11 +36,19 @@ const EducationService = () => {
         return educationRespJson;
     };
 
+    const deleteEducationById = async (id, education) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const educationResp = await educationApi.deleteEducationById(authToken, id, education);
+        const educationRespJson = educationResp.data;
+        return educationRespJson;
+    };
+
     return {
         getAllEducations,
         getEducationById,
         updateEducationById,
-        createEducation
+        createEducation,
+        deleteEducationById
     };
 };
 

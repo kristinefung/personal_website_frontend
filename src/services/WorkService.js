@@ -36,11 +36,19 @@ const WorkService = () => {
         return workRespJson;
     };
 
+    const deleteWorkById = async (id, work) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const workResp = await workApi.deleteWorkById(authToken, id, work);
+        const workRespJson = workResp.data;
+        return workRespJson;
+    };
+
     return {
         getAllWorks,
         getWorkById,
         updateWorkById,
-        createWork
+        createWork,
+        deleteWorkById
     };
 };
 
