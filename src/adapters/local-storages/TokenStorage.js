@@ -5,8 +5,13 @@ const TokenStorage = () => {
         return authToken;
     };
 
+    const removeAuthToken = () => {
+        localStorage.removeItem("token");
+    };
+
     return {
-        getAuthToken
+        getAuthToken,
+        removeAuthToken
     };
 };
 

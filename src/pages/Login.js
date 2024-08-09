@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import UserService from 'services/UserService';
+
 import 'styles/Login.css'
 
 const Login = ({ setAuth }) => {
@@ -7,43 +9,37 @@ const Login = ({ setAuth }) => {
   const [password, setPassword] = useState('');
 
   const [message, setMessage] = useState('');
-  async function fetchData() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const userService = UserService();
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    };
-    const data = await fetch('http://localhost:4000/api/login', requestOptions);
-    if (!data.ok) {
-      setMessage("INTERNAT_SERVER_ERROR");
-      return;
+  async function fetchLogin() {
+
+    setIsLoading(true);
+    try {
+      const resJson = await userService.login(email, password);
+      if (resJson.status !== 0) {
+        setMessage(resJson.message);
+        return;
+      }
+
+      return resJson.data.user_session_token;
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
 
-    const json = await data.json();
-    console.log(json);
-    if (json.status !== 0) {
-      setMessage(json.message);
-      return;
-    }
-    setAuth(true);
-    console.log(json.data.user_session_token);
-    localStorage.setItem("token", json.data.user_session_token);
-    window.location.reload();
   }
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Username:', email);
-    console.log('Password:', password);
-    fetchData();
-
-    // Handle form submission logic here
-
+    const token = await fetchLogin();
+    if (token) {
+      localStorage.setItem("token", token);
+      setAuth(true);
+    }
   };
 
   document.body.setAttribute('id', 'login-page');
