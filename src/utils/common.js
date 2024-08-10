@@ -9,19 +9,19 @@ const getRandomString = (length) => {
 
 const getMonthOptions = () => {
     const months = [
-        { label: 'Select month', value: '' },
-        { label: 'January', value: '01' },
-        { label: 'February', value: '02' },
-        { label: 'March', value: '03' },
-        { label: 'April', value: '04' },
-        { label: 'May', value: '05' },
-        { label: 'June', value: '06' },
-        { label: 'July', value: '07' },
-        { label: 'August', value: '08' },
-        { label: 'September', value: '09' },
-        { label: 'October', value: '10' },
-        { label: 'November', value: '11' },
-        { label: 'December', value: '12' },
+        { label: 'Select month', value: 0 },
+        { label: 'January', value: 1 },
+        { label: 'February', value: 2 },
+        { label: 'March', value: 3 },
+        { label: 'April', value: 4 },
+        { label: 'May', value: 5 },
+        { label: 'June', value: 6 },
+        { label: 'July', value: 7 },
+        { label: 'August', value: 8 },
+        { label: 'September', value: 9 },
+        { label: 'October', value: 10 },
+        { label: 'November', value: 11 },
+        { label: 'December', value: 12 },
     ];
 
     return months;
@@ -30,7 +30,7 @@ const getMonthOptions = () => {
 const getYearOptions = () => {
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 101 }, (_, i) => { return { label: currentYear - i, value: currentYear - i } });
-    years.unshift({ label: 'Select year', value: '' });
+    years.unshift({ label: 'Select year', value: 0 });
 
     return years;
 }

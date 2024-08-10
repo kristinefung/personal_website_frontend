@@ -30,6 +30,14 @@
     padding: 0 20px;
 }
 
+.dashboard-header .logout-btn {
+    color: #FFF;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+}
+
 /******************************************** 
 *                  Body
 ********************************************/
@@ -136,9 +144,28 @@
 /******************************************** 
 *                Form
 ********************************************/
-.form {
+.dashboard-main .form {
     background: #FFF;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(181, 181, 181, 0.287);
+}
+
+.dashboard-main .form .row {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    padding: 5px 10px;
+    column-gap: 10px;
+}
+
+.dashboard-main .form .row>* {
+    flex: 1;
+}
+
+.dashboard-main .form .btn-row {
+    padding: 20px 10px 10px;
+    display: flex;
+    justify-content: end;
+    column-gap: 10px;
 }

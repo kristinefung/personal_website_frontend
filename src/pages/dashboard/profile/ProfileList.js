@@ -120,8 +120,8 @@ const ProfileList = () => {
                     </td>
                     <td>{work.title}</td>
                     <td>{work.company_name}</td>
-                    <td>{work.start_year_month}</td>
-                    <td>{work.end_year_month}</td>
+                    <td>{work.start_month + '/' + work.start_year}</td>
+                    <td>{work.is_current === 0 ? work.end_month + '/' + work.end_year : 'Present'}</td>
                     <td>{work.created_at}</td>
                     <td>
                       <a href={'/dashboard/profile/work/edit/' + work.id}>
@@ -169,8 +169,8 @@ const ProfileList = () => {
                     </td>
                     <td>{education.degree}</td>
                     <td>{education.school_name}</td>
-                    <td>{education.start_year_month}</td>
-                    <td>{education.end_year_month}</td>
+                    <td>{education.start_month + '/' + education.start_year}</td>
+                    <td>{education.is_current === 0 ? education.end_month + '/' + education.end_year : 'Present'}</td>
                     <td>{education.created_at}</td>
                     <td>
                       <a href={'/dashboard/profile/education/edit/' + education.id}>

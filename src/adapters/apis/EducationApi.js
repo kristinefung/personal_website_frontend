@@ -56,8 +56,8 @@ const EducationApi = (baseUrl) => {
         throw new Error(`HTTP error ${response.status}`);
       }
 
-      const education = await response.json();
-      return education;
+      const resJson = await response.json();
+      return resJson;
     } catch (error) {
       throw error;
     }

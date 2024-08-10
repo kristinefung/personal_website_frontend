@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+
 import 'styles/Portal.css'
 
 const Header = () => {
@@ -16,7 +19,9 @@ const Header = () => {
         </a>
       </div>
       <div className='user-profile'>
-        <button onClick={handleLogout}>Log out</button>
+        <button className='logout-btn' onClick={handleLogout}>
+          <FontAwesomeIcon icon={faRightFromBracket} />
+        </button>
       </div>
     </div>
   )

@@ -1,13 +1,30 @@
 import { getRandomString } from 'utils/common';
 
-const DropdownList = ({ label, value, onChange, options = [{ label: "", value: "" }] }) => {
+const DropdownList = (
+  {
+    label,
+    value,
+    onChange,
+    options = [{ label: "", value: "" }],
+    isDisabled = false,
+    errorMsg
+  }) => {
   const id = 'dropdownlist-' + getRandomString(10);
 
   return (
     <>
       <div className='form-element'>
-        <label htmlFor={id}>{label}</label>
-        <select id={id} value={value} onChange={onChange}>
+        <div className='row'>
+          <label htmlFor={id}>{label}</label>
+          <div className='error-msg'>{errorMsg}</div>
+        </div>
+        <select
+          id={id}
+          className={errorMsg ? 'error-field' : ''}
+          value={value}
+          onChange={onChange}
+          disabled={isDisabled}
+        >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

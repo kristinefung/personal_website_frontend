@@ -6,7 +6,7 @@ const WorkCreate = () => {
         <>
             <div>
                 <h1>Create Work</h1>
-                <WorkForm action='CREATE' workData={{}} />
+                <WorkForm action='CREATE' />
             </div>
         </>
     );

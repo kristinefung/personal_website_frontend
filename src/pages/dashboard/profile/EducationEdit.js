@@ -43,7 +43,7 @@ const EducationEdit = () => {
                 <div>Error: {error.message}</div>
             ) : (
                 <div>
-                    <h1>Education #{education.id}</h1>
+                    <h1>Edit education</h1>
 
                     <EducationForm action='UPDATE' educationData={education} />
                 </div>

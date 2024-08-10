@@ -42,8 +42,11 @@ const WorkEdit = () => {
                 <div>Error: {error.message}</div>
             ) : (
                 <div>
-                    <h1>Work #{work.id}</h1>
-                    <WorkForm action='UPDATE' workData={work} />
+                    <h1>Edit work</h1>
+                    <WorkForm
+                        action='UPDATE'
+                        workData={work}
+                    />
                 </div>
 
             )}

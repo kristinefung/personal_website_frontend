@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPaperPlane, faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faPaperPlane, faIdCard } from '@fortawesome/free-solid-svg-icons';
 
 import 'styles/Portal.css'
 

@@ -3,8 +3,74 @@
     flex-direction: column;
 }
 
-.form-element input[type="text"] {
-    height: 30px;
+.form-element label {
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+.form-element .error-msg {
+    padding: 5px 0;
+    font-size: 12px;
+    color: #e60303;
+}
+
+.form-element input[type=text],
+.form-element textarea,
+.form-element select {
+    border: 1px solid #eff4fb;
     background: #eff4fb;
-    border: none;
+    border-radius: 5px;
+    padding: 8px 10px;
+}
+
+.form-element input[type=text].error-field,
+.form-element textarea.error-field,
+.form-element select.error-field {
+    border: 1px solid #e60303;
+}
+
+/******************************************** 
+*                 Button
+********************************************/
+.form-btn {
+    width: 80px;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 2px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.btn-normal {
+    background-color: #3c50e2;
+    border-color: #3c50e2;
+    color: #FFF;
+}
+
+.btn-reverse {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/******************************************** 
+*               Input Text
+********************************************/
+.form-element input[type=text] {
+    height: 20px;
+}
+
+/******************************************** 
+*                Text Area
+********************************************/
+.form-element textarea {
+    height: 100px;
+    min-height: 100px;
+    resize: vertical;
+}
+
+/******************************************** 
+*               Checkbox
+********************************************/
+.form-element input[type=checkbox] {
+    align-self: self-start;
 }

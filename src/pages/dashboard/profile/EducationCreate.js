@@ -6,7 +6,7 @@ const EducationCreate = () => {
         <>
             <div>
                 <h1>Create Education</h1>
-                <EducationForm action='CREATE' educationData={{}} />
+                <EducationForm action='CREATE' />
             </div>
         </>
     );

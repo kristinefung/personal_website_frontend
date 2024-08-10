@@ -6,13 +6,14 @@ const Checkbox = ({ label, isChecked, onChange }) => {
   return (
     <>
       <div className='form-element'>
-        <label htmlFor={id}>{label}</label>
-        <input
-          id={id}
-          type="checkbox"
-          checked={isChecked}
-          onChange={onChange}
-        />
+        <label htmlFor={id}>{label}
+          <input
+            id={id}
+            type="checkbox"
+            checked={isChecked}
+            onChange={onChange}
+          />
+        </label>
       </div>
     </>
   )
