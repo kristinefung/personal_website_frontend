@@ -132,3 +132,13 @@
 .dashboard-table tr:hover {
     background-color: #f6f8ff;
 }
+
+/******************************************** 
+*                Form
+********************************************/
+.form {
+    background: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(181, 181, 181, 0.287);
+}

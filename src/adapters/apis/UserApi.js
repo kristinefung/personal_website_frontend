@@ -1,4 +1,3 @@
-
 const UserApi = (baseUrl) => {
 
   const verifyUserSessionToken = async (authToken) => {

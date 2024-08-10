@@ -1,0 +1,10 @@
+.form-element {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-element input[type="text"] {
+    height: 30px;
+    background: #eff4fb;
+    border: none;
+}

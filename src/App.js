@@ -16,6 +16,7 @@ import EducationEdit from "pages/dashboard/profile/EducationEdit";
 import EducationCreate from "pages/dashboard/profile/EducationCreate";
 
 import 'App.css';
+import 'styles/FormElement.css';
 
 function App() {
 
