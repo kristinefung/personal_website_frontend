@@ -7,17 +7,19 @@ const EducationService = () => {
     const tokenStorage = TokenStorage();
 
     const getAllEducations = async () => {
-        const authToken = await tokenStorage.getAuthToken();
-
         const educationsResp = await educationApi.getAllEducations();
+        if (educationsResp.status !== 0) {
+            throw new Error(educationsResp.message);
+        }
         const educations = educationsResp.data;
         return educations;
     };
 
     const getEducationById = async (id) => {
-        const authToken = await tokenStorage.getAuthToken();
-
         const educationResp = await educationApi.getEducationById(id);
+        if (educationResp.status !== 0) {
+            throw new Error(educationResp.message);
+        }
         const education = educationResp.data;
         return education;
     };
@@ -25,6 +27,9 @@ const EducationService = () => {
     const updateEducationById = async (id, education) => {
         const authToken = await tokenStorage.getAuthToken();
         const educationResp = await educationApi.updateEducationById(authToken, id, education);
+        if (educationResp.status !== 0) {
+            throw new Error(educationResp.message);
+        }
         const educationRespJson = educationResp.data;
         return educationRespJson;
     };
@@ -32,6 +37,9 @@ const EducationService = () => {
     const createEducation = async (education) => {
         const authToken = await tokenStorage.getAuthToken();
         const educationResp = await educationApi.createEducation(authToken, education);
+        if (educationResp.status !== 0) {
+            throw new Error(educationResp.message);
+        }
         const educationRespJson = educationResp.data;
         return educationRespJson;
     };
@@ -39,6 +47,9 @@ const EducationService = () => {
     const deleteEducationById = async (id, education) => {
         const authToken = await tokenStorage.getAuthToken();
         const educationResp = await educationApi.deleteEducationById(authToken, id, education);
+        if (educationResp.status !== 0) {
+            throw new Error(educationResp.message);
+        }
         const educationRespJson = educationResp.data;
         return educationRespJson;
     };

@@ -7,17 +7,20 @@ const WorkService = () => {
     const tokenStorage = TokenStorage();
 
     const getAllWorks = async () => {
-        const authToken = await tokenStorage.getAuthToken();
-
         const worksResp = await workApi.getAllWorks();
+        if (worksResp.status !== 0) {
+            throw new Error(worksResp.message);
+        }
         const works = worksResp.data;
         return works;
     };
 
     const getWorkById = async (id) => {
-        const authToken = await tokenStorage.getAuthToken();
-
         const workResp = await workApi.getWorkById(id);
+
+        if (workResp.status !== 0) {
+            throw new Error(workResp.message);
+        }
         const work = workResp.data;
         return work;
     };
@@ -25,20 +28,27 @@ const WorkService = () => {
     const updateWorkById = async (id, work) => {
         const authToken = await tokenStorage.getAuthToken();
         const workResp = await workApi.updateWorkById(authToken, id, work);
-        const workRespJson = workResp.data;
-        return workRespJson;
+        if (workResp.status !== 0) {
+            throw new Error(workResp.message);
+        }
+        return workResp.data;
     };
 
     const createWork = async (work) => {
         const authToken = await tokenStorage.getAuthToken();
         const workResp = await workApi.createWork(authToken, work);
-        const workRespJson = workResp.data;
-        return workRespJson;
+        if (workResp.status !== 0) {
+            return { data: null, errMsg: workResp.message }
+        }
+        return { data: workResp.data, errMsg: null };
     };
 
     const deleteWorkById = async (id, work) => {
         const authToken = await tokenStorage.getAuthToken();
         const workResp = await workApi.deleteWorkById(authToken, id, work);
+        if (workResp.status !== 0) {
+            throw new Error(workResp.message);
+        }
         const workRespJson = workResp.data;
         return workRespJson;
     };

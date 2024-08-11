@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getMonthOptions, getYearOptions } from 'utils/common';
+import { validateEdu } from 'utils/validator';
 
 import EducationService from 'services/EducationService';
 
@@ -14,20 +15,11 @@ import Button from 'components/form_element/Button';
 const EducationForm = (
   {
     action = 'CREATE',
-    educationData = {
-      degree: '',
-      subject: '',
-      school_name: '',
-      description: '',
-      start_month: 0,
-      start_year: 0,
-      end_month: 0,
-      end_year: 0,
-      is_current: 0,
-    }
+    educationData
   }) => {
   const [education, setEducation] = useState(educationData);
   const [errors, setErrors] = useState({});
+  const [fetchError, setFetchError] = useState("");
 
   const navigate = useNavigate();
   const educationService = EducationService();
@@ -39,7 +31,7 @@ const EducationForm = (
       console.log(eduRes);
       return eduRes;
     } catch (error) {
-      // setError(error);
+      setFetchError(error.message);
       console.log(error);
     } finally {
       // setIsLoading(false);
@@ -53,68 +45,10 @@ const EducationForm = (
       console.log(eduRes);
       return eduRes;
     } catch (error) {
-      // setError(error);
+      setFetchError(error.message);
     } finally {
       // setIsLoading(false);
     }
-  };
-
-  const validateForm = () => {
-    const currentYear = new Date().getFullYear();
-    const minYear = currentYear - 100;
-    let isValid = true;
-    const newErrors = {
-      degree: '',
-      subject: '',
-      school_name: '',
-      description: '',
-      start_month: '',
-      start_year: '',
-      end_month: '',
-      end_year: '',
-      is_current: '',
-    };
-
-    if (!education.degree?.trim()) {
-      newErrors.degree = 'Required';
-      isValid = false;
-    }
-
-    if (!education.subject?.trim()) {
-      newErrors.subject = 'Required';
-      isValid = false;
-    }
-
-    if (!education.school_name?.trim()) {
-      newErrors.school_name = 'Required';
-      isValid = false;
-    }
-
-    if (Number(education.start_month) < 1 || Number(education.start_month) > 12) {
-      newErrors.start_month = 'Required';
-      isValid = false;
-    }
-
-    if (Number(education.start_year) < minYear || Number(education.start_month) > currentYear) {
-      newErrors.start_year = 'Required';
-      isValid = false;
-    }
-
-    if (education.is_current === 0) {
-
-      if (Number(education.end_month) < 1 || Number(education.end_month) > 12) {
-        newErrors.end_month = 'Required';
-        isValid = false;
-      }
-
-      if (Number(education.end_year) < minYear || Number(education.end_month) > currentYear) {
-        newErrors.end_year = 'Required';
-        isValid = false;
-      }
-    }
-
-    setErrors(newErrors);
-    return isValid;
   };
 
   const handleGoBack = () => {
@@ -123,8 +57,10 @@ const EducationForm = (
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { isValid, newErrors } = validateEdu(education);
+    setErrors(newErrors);
 
-    if (validateForm()) {
+    if (isValid) {
       if (action === 'CREATE') {
         const eduRes = await fetchCreateEducation();
         if (eduRes) {
@@ -137,8 +73,6 @@ const EducationForm = (
         }
       }
     }
-
-
   };
 
   return (
@@ -149,13 +83,13 @@ const EducationForm = (
       <hr></hr>
       <div className='row'>
         <InputText
-          label={"Degree"}
+          label={"Degree*"}
           value={education.degree}
           onChange={(e) => setEducation({ ...education, degree: e.target.value })}
           errorMsg={errors.degree}
         />
         <InputText
-          label={"Subject"}
+          label={"Subject*"}
           value={education.subject}
           onChange={(e) => setEducation({ ...education, subject: e.target.value })}
           errorMsg={errors.subject}
@@ -163,7 +97,7 @@ const EducationForm = (
       </div>
       <div className='row'>
         <InputText
-          label={"School name"}
+          label={"School name*"}
           value={education.school_name}
           onChange={(e) => setEducation({ ...education, school_name: e.target.value })}
           errorMsg={errors.school_name}
@@ -179,7 +113,7 @@ const EducationForm = (
       </div>
       <div className='row'>
         <Checkbox
-          label={"Is current education"}
+          label={"Is current education*"}
           isChecked={education.is_current === 1}
           onChange={(e) => setEducation({
             ...education,
@@ -192,7 +126,7 @@ const EducationForm = (
       </div>
       <div className='row'>
         <DropdownList
-          label={"Start date"}
+          label={"Start date*"}
           value={education.start_month}
           onChange={(e) => setEducation({ ...education, start_month: Number(e.target.value) })}
           options={getMonthOptions()}
@@ -208,7 +142,7 @@ const EducationForm = (
       </div>
       <div className='row'>
         < DropdownList
-          label={"End date"}
+          label={"End date*"}
           value={education.end_month}
           onChange={(e) => setEducation({ ...education, end_month: Number(e.target.value) })}
           options={getMonthOptions()}
@@ -231,9 +165,13 @@ const EducationForm = (
           styleIsReversed={true}
         />
         <Button
+          type={"submit"}
           label={action === 'CREATE' ? 'Submit' : 'Save'}
           onClick={handleSubmit}
         />
+      </div>
+      <div className='row'>
+        {fetchError}
       </div>
     </form>
   )
