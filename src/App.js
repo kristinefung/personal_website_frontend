@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
-import Home from 'pages/Home';
+import Root from 'pages/website/Root';
 import Login from 'pages/Login';
 // Dashboard related
 import Portal from "pages/dashboard/Portal";
@@ -32,7 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Root />} />
         <Route path="/login" element={!isAuthenticated ? <Login setAuth={setAuth} /> : <Navigate to="/dashboard" replace />} />
 
         <Route path='/dashboard' element={isAuthenticated ? <Portal setAuth={setAuth} /> : <Navigate to="/login" replace />} >

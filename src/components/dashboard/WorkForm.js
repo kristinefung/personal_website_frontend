@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getMonthOptions, getYearOptions } from 'utils/common';
@@ -6,11 +6,11 @@ import { validateWork } from 'utils/validator';
 
 import WorkService from 'services/WorkService';
 
-import InputText from 'components/form_element/InputText';
-import Textarea from 'components/form_element/Textarea';
-import DropdownList from 'components/form_element/DropdownList';
-import Checkbox from 'components/form_element/Checkbox';
-import Button from 'components/form_element/Button';
+import InputText from 'components/dashboard/form_element/InputText';
+import Textarea from 'components/dashboard/form_element/Textarea';
+import DropdownList from 'components/dashboard/form_element/DropdownList';
+import Checkbox from 'components/dashboard/form_element/Checkbox';
+import Button from 'components/dashboard/form_element/Button';
 
 const WorkForm = (
   {
@@ -20,6 +20,8 @@ const WorkForm = (
   const [work, setWork] = useState(workData);
   const [errors, setErrors] = useState({});
   const [fetchError, setFetchError] = useState("");
+
+  const workRef = useRef(work);
 
   const navigate = useNavigate();
   const workService = WorkService();
@@ -54,6 +56,10 @@ const WorkForm = (
 
   const handleGoBack = () => {
     navigate('/dashboard/profile');
+  };
+
+  const handleReset = () => {
+    setWork(workRef.current);
   };
 
   const handleSubmit = async (e) => {
@@ -154,8 +160,8 @@ const WorkForm = (
 
       <div className='btn-row'>
         <Button
-          label={'Back'}
-          onClick={handleGoBack}
+          label={'Reset'}
+          onClick={handleReset}
           styleIsReversed={true}
         />
         <Button

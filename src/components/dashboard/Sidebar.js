@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPaperPlane, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faUser, faPaperPlane, faIdCard } from '@fortawesome/free-solid-svg-icons';
 
 import 'styles/Portal.css'
 
@@ -12,6 +12,12 @@ const Sidebar = () => {
     <>
       <div className="dashboard-sidebar">
         <ul className="menu">
+          <li >
+            <a href="/">
+              <FontAwesomeIcon icon={faHouse} />
+              <span>Website</span>
+            </a>
+          </li>
           <li className={location.pathname.startsWith('/dashboard/user') ? 'active' : ''}>
             <a href="/dashboard/user">
               <FontAwesomeIcon icon={faUser} />
