@@ -4,9 +4,9 @@ const ImageWithBorder = ({ className = '', src }) => {
 
   const imageRef = useRef(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-
+  console.log(imageRef.current);
   useEffect(() => {
-    if (imageRef.current) {
+    if (imageRef.current?.offsetWidth & imageRef.current?.offsetHeight) {
       setImageSize({
         width: imageRef.current.offsetWidth,
         height: imageRef.current.offsetHeight,
@@ -22,6 +22,7 @@ const ImageWithBorder = ({ className = '', src }) => {
           src={src}
           ref={imageRef}
         />
+
         <div
           className="border"
           style={{
@@ -29,6 +30,7 @@ const ImageWithBorder = ({ className = '', src }) => {
             width: imageSize.width
           }}
         ></div>
+
       </div >
     </>
   )

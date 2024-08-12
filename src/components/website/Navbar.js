@@ -28,7 +28,12 @@ const Navbar = ({
             <a>PORTFOLIO</a>
           </li>
           <li>
-            <a>CONTACT</a>
+            <a
+              className="btn-normal"
+              onClick={() => scrollToSec(navRefs.contactRef)}
+            >
+              CONTACT
+            </a>
           </li>
         </ul>
       </div >

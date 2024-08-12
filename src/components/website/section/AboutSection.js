@@ -12,11 +12,13 @@ const AboutSection = ({ aboutRef }) => {
         <div className="right">
           <div className="text">
             <h1>ABOUT ME</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut diam sapien, egestas vitae felis eget, efficitur ornare lorem. Duis rhoncus nulla augue, in pulvinar metus imperdiet sed. Vestibulum euismod venenatis condimentum. Mauris sed dapibus tellus, eget scelerisque felis. Sed aliquam justo diam, at cursus velit sodales non. Donec quam odio, venenatis et magna et, accumsan bibendum mauris. Curabitur tempus bibendum est ac ornare.
+            A detail-oriented programmer with 2 years of experience in software development.
+            Focusing on backend development such as PHP, Node.js and GoLang.
+            Possess a strong passion for problem solving and learning new technologies.
 
           </div>
           <div className="btn-row">
-            <button>Resume</button>
+            <a className='btn-normal'>Resume</a>
           </div>
         </div>
       </section>

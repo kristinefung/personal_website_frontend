@@ -1,3 +1,5 @@
+import Button from "components/dashboard/form_element/Button";
+
 const HomeSection = ({ homeRef }) => {
   return (
     <>
@@ -8,7 +10,7 @@ const HomeSection = ({ homeRef }) => {
         <div className="foreground">
           <div className="title">
             <p className="small">
-              I'm Kristine Fung, a
+              I'm Kristine, a
             </p>
             <p className="large">
               <span className="first-letter">F</span>ULL <span className="first-letter">S</span>TACK<br />
@@ -16,9 +18,9 @@ const HomeSection = ({ homeRef }) => {
               <span className="first-letter">D</span>EVELOPER<span className="fullstop">.</span><br />
             </p>
           </div>
-          <div className="btn-row">
-            <button>Github</button>
-          </div>
+          <a className="btn-normal" href="https://github.com/sallyfunghk" target="_blank">
+            GITHUB
+          </a>
         </div>
 
       </section>
