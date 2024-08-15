@@ -6,12 +6,13 @@ const ImageWithBorder = ({ className = '', src }) => {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   console.log(imageRef.current);
   useEffect(() => {
-    if (imageRef.current?.offsetWidth & imageRef.current?.offsetHeight) {
-      setImageSize({
-        width: imageRef.current.offsetWidth,
-        height: imageRef.current.offsetHeight,
-      });
-    }
+    console.log(imageRef.current.offsetWidth);
+    console.log(imageRef.current.offsetHeight);
+    setImageSize({
+      width: imageRef.current.offsetWidth,
+      height: imageRef.current.offsetHeight,
+    });
+
   }, []);
 
   return (

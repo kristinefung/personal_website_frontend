@@ -18,7 +18,7 @@ const HomeSection = ({ homeRef }) => {
               <span className="first-letter">D</span>EVELOPER<span className="fullstop">.</span><br />
             </p>
           </div>
-          <a className="btn-normal" href="https://github.com/sallyfunghk" target="_blank">
+          <a className="btn-normal" href="https://github.com/kristinefung" target="_blank">
             GITHUB
           </a>
         </div>

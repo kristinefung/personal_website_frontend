@@ -43,9 +43,30 @@ const EnquiryApi = (baseUrl) => {
     }
   };
 
+  const createEnquiry = async (enquiry) => {
+    try {
+      const response = await fetch(`${baseUrl}/enquiries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(enquiry),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const resJson = await response.json();
+      return resJson;
+    } catch (error) {
+      throw error;
+    }
+  };
   return {
     getAllEnquiries,
     getEnquiryById,
+    createEnquiry,
   };
 };
 

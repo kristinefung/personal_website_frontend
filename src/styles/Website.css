@@ -106,25 +106,102 @@ body#website-page {
 /******************************************** 
 *               About Section
 ********************************************/
-#website #about-section {
+#website #about-section .about-me {
+    margin: 0;
+    padding: 130px 80px 0 80px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+#website #about-section .about-me .left {
+    flex: 1;
+}
+
+#website #about-section .about-me .left img.my-photo {
+    width: 225px;
+    height: 300px;
+}
+
+#website #about-section .about-me .right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+#website #about-section .about-work,
+#website #about-section .about-education {
+    margin-top: 80px;
+}
+
+#website #about-section .about-work p,
+#website #about-section .about-education p {
+    text-align: center;
+    color: #4eb7dc;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/******************************************** 
+*            Portfolio Section
+********************************************/
+#website #portfolio-section {
     margin: 0;
     padding: 50px 50px 50px 80px;
     min-height: calc(100vh - 100px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 40px;
 }
 
-#website #about-section .left img.my-photo {
-    width: 200px;
+#website #portfolio-section h1 {
+    margin: 80px 0 0 0;
 }
 
-#website #about-section .right {
+#website #portfolio-section .projects {
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
+
+#website #portfolio-section .project:nth-child(odd) {
+    flex-direction: row;
+}
+
+#website #portfolio-section .project:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+#website #portfolio-section .project {
+    display: flex;
+    gap: 50px;
+    margin: 80px 0;
+}
+
+#website #portfolio-section .project .text {
+    flex: 1;
+}
+
+#website #portfolio-section .project .text .title {
+    color: #4eb7dc;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#website #portfolio-section .project .image {
+    flex: 1;
+    display: flex;
+}
+
+#website #portfolio-section .project .image img.project-photo {
+    height: 225px;
+    width: 300px;
+    margin-left: 60px;
+}
+
 
 /******************************************** 
 *              Contact Section
@@ -132,7 +209,7 @@ body#website-page {
 #website #contact-section {
     border-top-left-radius: 100px;
     border-top-right-radius: 100px;
-    background: linear-gradient(to right, #4720bce2, #50a6dbe7);
+    background: linear-gradient(135deg, #4720bce2, #50a6dbe7);
 }
 
 #website #contact-section .header {
@@ -164,7 +241,7 @@ body#website-page {
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    background: linear-gradient(to right, #50a6db, #4720bc);
+    background: linear-gradient(135deg, #50a6db, #4720bc);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.287);
     display: flex;
     align-items: center;
@@ -179,7 +256,7 @@ body#website-page {
 #website #contact-section .body .right form {
     width: 100%;
     padding: 30px 0;
-    background: linear-gradient(to right, #50a6db, #4720bc);
+    background: linear-gradient(135deg, #50a6db, #4720bc);
     border-radius: 20px;
 }
 
@@ -202,6 +279,14 @@ body#website-page {
     padding: 5px 10px;
 }
 
+#website #contact-section .body .right form input[type="text"].error {
+    border: 1px solid #e30000;
+}
+
+#website #contact-section .body .right form input[type="text"].error::placeholder {
+    color: #e30000;
+}
+
 #website #contact-section .body .right form textarea {
     background: #101630;
     color: #FFF;
@@ -210,6 +295,14 @@ body#website-page {
     border-radius: 5px;
     padding: 5px 10px;
     resize: none;
+}
+
+#website #contact-section .body .right form textarea.error {
+    border: 1px solid #e30000;
+}
+
+#website #contact-section .body .right form textarea.error::placeholder {
+    color: #e30000;
 }
 
 #website #contact-section .body .right form button {
@@ -258,7 +351,7 @@ body#website-page {
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    background: linear-gradient(to right, #50a6db, #4720bc);
+    background: linear-gradient(135deg, #50a6db, #4720bc);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.287);
     display: flex;
     align-items: center;
@@ -298,7 +391,7 @@ body#website-page {
     border: none;
     border-radius: 8px;
     color: #FFFFFF;
-    background: linear-gradient(to right, #50a6db, #4820bc);
+    background: linear-gradient(135deg, #50a6db, #4820bc);
     cursor: pointer;
     font-weight: 700;
 }

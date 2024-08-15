@@ -2,6 +2,8 @@
 const currentYear = new Date().getFullYear();
 const minYear = currentYear - 100;
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const formatDate = (year, month) => {
     const yearStr = year.toString();
     const monthStr = month.toString().padStart(2, '0');
@@ -126,7 +128,41 @@ const validateEdu = (edu) => {
     return { isValid, newErrors };
 }
 
+
+const validateEnquiry = (enquiry) => {
+    let isValid = true;
+    const newErrors = {
+        name: '',
+        email: '',
+        comment: ''
+    };
+
+    if (!enquiry.name?.trim()) {
+        newErrors.name = 'Name is equired';
+        isValid = false;
+    }
+
+    if (!enquiry.email?.trim()) {
+        newErrors.email = 'Email is required';
+        isValid = false;
+    }
+    else {
+        if (!emailRegex.test(enquiry.email)) {
+            newErrors.email = 'Email format invalid';
+            isValid = false;
+        }
+    }
+
+    if (!enquiry.comment?.trim()) {
+        newErrors.comment = 'Comment is required';
+        isValid = false;
+    }
+
+    return { isValid, newErrors };
+}
+
 export {
     validateWork,
-    validateEdu
+    validateEdu,
+    validateEnquiry
 };

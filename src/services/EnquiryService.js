@@ -22,9 +22,19 @@ const EnquiryService = () => {
         return enquiry;
     };
 
+    const createEnquiry = async (education) => {
+        const enquiryResp = await enquiryApi.createEnquiry(education);
+        if (enquiryResp.status !== 0) {
+            throw new Error(enquiryResp.message);
+        }
+        const enquiryRespJson = enquiryResp.data;
+        return enquiryRespJson;
+    };
+
     return {
         getAllEnquiries,
-        getEnquiryById
+        getEnquiryById,
+        createEnquiry
     };
 };
 

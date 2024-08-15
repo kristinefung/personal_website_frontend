@@ -1,4 +1,4 @@
-
+import Logo from 'assets/logo.png'
 
 const Navbar = ({
   scrollToSec,
@@ -8,7 +8,7 @@ const Navbar = ({
     <>
       <div className="navbar">
         <div className="logo">
-          KristineFung
+          <img src={Logo} height={40} />
         </div>
         <ul className="menu">
           <li>
@@ -25,7 +25,8 @@ const Navbar = ({
             </a>
           </li>
           <li>
-            <a>PORTFOLIO</a>
+            <a onClick={() => scrollToSec(navRefs.portfolioRef)}>
+              PORTFOLIO</a>
           </li>
           <li>
             <a
