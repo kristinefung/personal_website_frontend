@@ -24,6 +24,10 @@ body#website-page {
     margin: 0 20px;
 }
 
+#website .navbar .logo img {
+    cursor: pointer;
+}
+
 #website .navbar .menu {
     margin: 0 20px;
     display: flex;
@@ -202,6 +206,50 @@ body#website-page {
     margin-left: 60px;
 }
 
+/******************************************** 
+*             Experience Section
+********************************************/
+#website #experience-section {
+    margin: 0;
+    padding: 50px 50px 50px 80px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+#website #experience-section .experiences {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 0 100px;
+}
+
+#website #experience-section .experience {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    gap: 10px;
+}
+
+#website #experience-section .experience .image {
+    flex: 3;
+}
+
+#website #experience-section .experience .image img {
+    width: 100px;
+}
+
+#website #experience-section .experience .name {
+    flex: 1;
+    color: #868a97;
+}
 
 /******************************************** 
 *              Contact Section

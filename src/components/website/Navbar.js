@@ -8,7 +8,11 @@ const Navbar = ({
     <>
       <div className="navbar">
         <div className="logo">
-          <img src={Logo} height={40} />
+          <img
+            src={Logo}
+            height={40}
+            onClick={() => scrollToSec(navRefs.homeRef)}
+          />
         </div>
         <ul className="menu">
           <li>
@@ -27,6 +31,10 @@ const Navbar = ({
           <li>
             <a onClick={() => scrollToSec(navRefs.portfolioRef)}>
               PORTFOLIO</a>
+          </li>
+          <li>
+            <a onClick={() => scrollToSec(navRefs.experienceRef)}>
+              EXPERIENCE</a>
           </li>
           <li>
             <a

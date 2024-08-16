@@ -68,6 +68,10 @@
     font-weight: 700;
 }
 
+.timeline .wrapper .row .container .header .right {
+    color: #868a97
+}
+
 .timeline .wrapper .row .container .body {
     text-align: justify;
 }
@@ -104,9 +108,9 @@
 }
 
 .timeline .wrapper .row:nth-child(odd) .container::after {
-    right: -13.5px;
+    right: -13px;
 }
 
 .timeline .wrapper .row:nth-child(even) .container::after {
-    left: -8.5px;
+    left: -9px;
 }
