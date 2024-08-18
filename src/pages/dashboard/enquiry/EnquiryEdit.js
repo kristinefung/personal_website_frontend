@@ -3,32 +3,37 @@ import { useState, useEffect } from 'react';
 
 import EnquiryService from 'services/EnquiryService';
 
+import EnquiryForm from 'components/dashboard/form/EnquiryForm';
+
 const EnquiryEdit = () => {
-    const [enquiry, setEnquiry] = useState([]);
+    const [enquiry, setEnquiry] = useState({
+
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const params = useParams();
 
     const enquiryService = EnquiryService();
+    console.log(enquiry);
+
+    const fetchGetEnquiry = async () => {
+        setIsLoading(true);
+
+        try {
+            const enquiryRes = await enquiryService.getEnquiryById(params.id);
+            console.log(enquiryRes);
+            setEnquiry(enquiryRes);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchEnquiry = async () => {
-            setIsLoading(true);
-
-            try {
-                const enquiry = await enquiryService.getEnquiryById(params.id);
-                setEnquiry(enquiry);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchEnquiry();
+        fetchGetEnquiry();
     }, []);
-
 
     return (
         <>
@@ -38,10 +43,11 @@ const EnquiryEdit = () => {
                 <div>Error: {error.message}</div>
             ) : (
                 <div>
-                    <h1>Enquiry #{enquiry.id}</h1>
-                    <div>{enquiry.company_name}</div>
-                    <div>{enquiry.comment}</div>
+                    <h1>Edit enquiry</h1>
+
+                    <EnquiryForm action='UPDATE' enquiryData={enquiry} />
                 </div>
+
             )}
         </>
     );

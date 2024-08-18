@@ -40,6 +40,15 @@ const getYearOptions = () => {
     return years;
 }
 
+const getEnquiryStatusOptions = () => {
+    const status = [
+        { label: 'Unhandled', value: 1 },
+        { label: 'Handled', value: 2 },
+    ];
+
+    return status;
+}
+
 const readableDate = (startMonth, startYear, endMonth, endYear, isCurrent) => {
     let date = '';
     const months = getMonthOptions();
@@ -73,10 +82,19 @@ const readableDateTime = (datetime) => {
     return formattedDate
 }
 
+const readableEnquiryStatus = (status) => {
+    const statuses = getEnquiryStatusOptions();
+    const statusKeyValue = statuses.find(s => s.value === status);
+    const readableStatus = statusKeyValue ? statusKeyValue.label : '';
+    return readableStatus
+}
+
 export {
     getRandomString,
     getMonthOptions,
     getYearOptions,
+    getEnquiryStatusOptions,
     readableDate,
-    readableDateTime
+    readableDateTime,
+    readableEnquiryStatus
 };

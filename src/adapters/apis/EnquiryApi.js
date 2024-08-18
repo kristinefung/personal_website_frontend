@@ -86,11 +86,34 @@ const EnquiryApi = (baseUrl) => {
     }
   };
 
+  const updateEnquiryById = async (authToken, id, enquiry) => {
+    try {
+      const response = await fetch(`${baseUrl}/enquiries/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(enquiry),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const enquiryRes = await response.json();
+      return enquiryRes;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     getAllEnquiries,
     getEnquiryById,
     createEnquiry,
-    deleteEnquiryById
+    deleteEnquiryById,
+    updateEnquiryById
   };
 };
 

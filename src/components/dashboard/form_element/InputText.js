@@ -1,7 +1,13 @@
 import { getRandomString } from 'utils/common';
 
 
-const InputText = ({ label, value, onChange, errorMsg }) => {
+const InputText = ({
+  label,
+  value,
+  onChange,
+  errorMsg,
+  isDisabled = false
+}) => {
   const id = 'text-' + getRandomString(10);
 
   return (
@@ -17,6 +23,7 @@ const InputText = ({ label, value, onChange, errorMsg }) => {
           type="text"
           value={value}
           onChange={onChange}
+          disabled={isDisabled}
         />
       </div>
     </>

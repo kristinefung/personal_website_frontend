@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import EnquiryService from 'services/EnquiryService';
-import { readableDate, readableDateTime } from 'utils/common';
+import { readableDateTime, readableEnquiryStatus } from 'utils/common';
 
 const EnquiryTable = ({
 
@@ -82,13 +82,6 @@ const EnquiryTable = ({
                 <FontAwesomeIcon icon={faTrashCan} />
                 Delete seleted
               </button>
-              <button
-                onClick={() => navigate('/dashboard/enquiry/create')}
-                className='action-btn add-btn'
-              >
-                <FontAwesomeIcon icon={faPlus} />
-                Add a new enquiry
-              </button>
             </div>
             <table id="enquiry-table">
               <tbody>
@@ -99,10 +92,10 @@ const EnquiryTable = ({
                       <span className="checkmark"></span>
                     </label>
                   </th>
-                  <th style={{ width: '280px' }}>Name</th>
-                  <th style={{ width: '280px' }}>Company Name</th>
-                  <th style={{ width: '200px' }}>Comment</th>
-                  <th style={{ width: '200px' }}>Status</th>
+                  <th style={{ width: '140px' }}>Name</th>
+                  <th style={{ width: '200px' }}>Company Name</th>
+                  <th style={{ width: '300px' }}>Comment</th>
+                  <th style={{ width: '100px' }}>Status</th>
                   <th style={{ width: '180px' }}>Created At</th>
                   <th style={{ width: '100px' }}>Action</th>
                 </tr>
@@ -125,7 +118,7 @@ const EnquiryTable = ({
                         {enquiry.comment}
                       </td>
                       <td style={{ maxWidth: '230px' }}>
-                        {enquiry.status_id}
+                        {readableEnquiryStatus(enquiry.status_id)}
                       </td>
                       <td style={{ maxWidth: '150px' }}>
                         {readableDateTime(enquiry.created_at)}

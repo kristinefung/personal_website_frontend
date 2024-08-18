@@ -1,6 +1,12 @@
 import { getRandomString } from 'utils/common';
 
-const Textarea = ({ label, value, onChange, errorMsg }) => {
+const Textarea = ({
+  label,
+  value,
+  onChange,
+  errorMsg,
+  isDisabled = false
+}) => {
   const id = 'textarea-' + getRandomString(10);
   return (
     <>
@@ -14,6 +20,7 @@ const Textarea = ({ label, value, onChange, errorMsg }) => {
           className={errorMsg ? 'error-field' : ''}
           value={value}
           onChange={onChange}
+          disabled={isDisabled}
         />
       </div>
     </>
