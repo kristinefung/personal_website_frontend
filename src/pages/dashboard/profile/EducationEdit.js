@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import EducationService from 'services/EducationService';
 
-import EducationForm from 'components/dashboard/EducationForm';
+import EducationForm from 'components/dashboard/form/EducationForm';
 
 const EducationEdit = () => {
     const [education, setEducation] = useState({

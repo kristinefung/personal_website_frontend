@@ -1,4 +1,4 @@
-import EducationForm from "components/dashboard/EducationForm";
+import EducationForm from "components/dashboard/form/EducationForm";
 
 const EducationCreate = () => {
 

@@ -1,4 +1,4 @@
-import WorkForm from 'components/dashboard/WorkForm';
+import WorkForm from 'components/dashboard/form/WorkForm';
 
 const WorkCreate = () => {
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import WorkService from 'services/WorkService';
 
-import WorkForm from 'components/dashboard/WorkForm';
+import WorkForm from 'components/dashboard/form/WorkForm';
 
 const WorkEdit = () => {
     const [work, setWork] = useState({

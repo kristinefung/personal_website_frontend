@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 import EnquiryService from 'services/EnquiryService';
+import EnquiryTable from 'components/dashboard/table/EnquiryTable';
 
 const EnquiryList = () => {
 
@@ -34,40 +35,7 @@ const EnquiryList = () => {
     <>
       <h1>Enquiries</h1>
       <div>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div>Error: {error}</div>
-        ) : (
-          <table id="enquiry-table" className='dashboard-table'>
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <th>Company Name</th>
-                <th>Comment</th>
-                <th>Status</th>
-                <th>Created At</th>
-                <th>Details</th>
-              </tr>
-              {enquiries.map((enquiry) => {
-                return (
-                  <tr key={enquiry.id}>
-                    <td>{enquiry.name}</td>
-                    <td>{enquiry.company_name}</td>
-                    <td>{enquiry.comment}</td>
-                    <td>{enquiry.status_id}</td>
-                    <td>{enquiry.created_at}</td>
-                    <td>
-                      <a href={'/dashboard/enquiry/' + enquiry.id}>
-                        <FontAwesomeIcon icon={faPen} />
-                      </a>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        )}
+        <EnquiryTable />
       </div>
     </>
   )

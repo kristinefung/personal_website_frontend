@@ -62,12 +62,22 @@
 }
 
 .dashboard-sidebar .menu {
-    height: 88%;
+    height: calc(100vh - 50px);
     position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
+.dashboard-sidebar .menu li.bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.dashboard-sidebar .menu li.bottom:hover {
+    background: #1d2733;
+}
+
 
 .dashboard-sidebar .menu li {
     padding: 0;
@@ -80,6 +90,7 @@
     background: #2a86b8;
     cursor: pointer;
 }
+
 
 .dashboard-sidebar .menu a {
     padding: 15px 28px;
@@ -113,36 +124,128 @@
     font-size: 24px;
 }
 
+.dashboard .react-tabs__tab-list {
+    margin: 0;
+}
+
 /******************************************** 
 *                Table
 ********************************************/
 .dashboard-table {
+    background: #FFF;
+    padding: 15px;
+    width: 1200px;
+}
+
+.dashboard-table .action-row {
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+    padding: 10px 0 20px 0;
+}
+
+.dashboard-table table {
     border-radius: 3px;
     border-spacing: 0px 3px;
 }
 
-.dashboard-table td,
 .dashboard-table th {
-    min-width: 50px;
-    padding: 8px 15px;
-
-}
-
-.dashboard-table th {
+    padding: 8px 10px;
     text-align: left;
-    background-color: #eaecf5;
 }
 
-.dashboard-table tr {
+.dashboard-table td {
+    padding: 8px 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.dashboard-table td.action {
+    display: flex;
+    gap: 5px
+}
+
+.dashboard-table tr:nth-child(odd) {
     background: #FFF;
 }
 
-.dashboard-table tr:hover {
-    background-color: #f6f8ff;
+.dashboard-table tr:nth-child(even) {
+    background: #e7e9f0;
+}
+
+.dashboard-table .checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.dashboard-table .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.dashboard-table .checkmark {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #878787;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+/* On mouse-over, add a grey background color */
+.dashboard-table .checkbox-container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.dashboard-table .checkbox-container input:checked~.checkmark {
+    background-color: #1d2733;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.dashboard-table .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.dashboard-table .checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.dashboard-table .checkbox-container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 /******************************************** 
-*                Form
+*                   Form
 ********************************************/
 .dashboard-main .form {
     background: #FFF;
@@ -168,4 +271,27 @@
     display: flex;
     justify-content: end;
     column-gap: 10px;
+}
+
+/******************************************** 
+*                  Button
+********************************************/
+.dashboard .action-btn {
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    padding: 5px 7px;
+}
+
+.dashboard .delete-btn {
+    background: #e60303;
+}
+
+.dashboard .edit-btn {
+    background: #1d2733;
+}
+
+.dashboard .add-btn {
+    background: #1d2733;
 }

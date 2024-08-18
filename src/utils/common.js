@@ -10,18 +10,18 @@ const getRandomString = (length) => {
 const getMonthOptions = () => {
     const months = [
         { label: 'Select month', value: 0 },
-        { label: 'January', value: 1 },
-        { label: 'February', value: 2 },
-        { label: 'March', value: 3 },
-        { label: 'April', value: 4 },
+        { label: 'Jan', value: 1 },
+        { label: 'Feb', value: 2 },
+        { label: 'Mar', value: 3 },
+        { label: 'Apr', value: 4 },
         { label: 'May', value: 5 },
-        { label: 'June', value: 6 },
-        { label: 'July', value: 7 },
-        { label: 'August', value: 8 },
-        { label: 'September', value: 9 },
-        { label: 'October', value: 10 },
-        { label: 'November', value: 11 },
-        { label: 'December', value: 12 },
+        { label: 'Jun', value: 6 },
+        { label: 'Jul', value: 7 },
+        { label: 'Aug', value: 8 },
+        { label: 'Sep', value: 9 },
+        { label: 'Oct', value: 10 },
+        { label: 'Nov', value: 11 },
+        { label: 'Dec', value: 12 },
     ];
 
     return months;
@@ -29,14 +29,54 @@ const getMonthOptions = () => {
 
 const getYearOptions = () => {
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 101 }, (_, i) => { return { label: currentYear - i, value: currentYear - i } });
+    const years = Array.from({ length: 101 }, (_, i) => {
+        return {
+            label: currentYear - i,
+            value: currentYear - i
+        }
+    });
     years.unshift({ label: 'Select year', value: 0 });
 
     return years;
 }
 
+const readableDate = (startMonth, startYear, endMonth, endYear, isCurrent) => {
+    let date = '';
+    const months = getMonthOptions();
+
+    const startMonthStr = months.find(m => m.value === startMonth);
+    const startMonthShortStr = startMonthStr ? startMonthStr.label : '';
+
+    date = `${startMonthShortStr} ${startYear}`;
+
+    if (isCurrent) {
+        date += ` - Present`
+    } else {
+        const endMonthStr = months.find(m => m.value === endMonth);
+        const endMonthShortStr = endMonthStr ? endMonthStr.label : '';
+        date += ` - ${endMonthShortStr} ${endYear}`
+    }
+
+    return date
+}
+const readableDateTime = (datetime) => {
+    const date = new Date(datetime);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hour = String(date.getHours()).padStart(2, '0')
+    const minute = String(date.getMinutes()).padStart(2, '0')
+
+    const formattedDate = `${year}-${month}-${day} ${hour}:${minute}`;
+
+    return formattedDate
+}
+
 export {
     getRandomString,
     getMonthOptions,
-    getYearOptions
+    getYearOptions,
+    readableDate,
+    readableDateTime
 };

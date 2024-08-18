@@ -12,18 +12,12 @@ const Sidebar = () => {
     <>
       <div className="dashboard-sidebar">
         <ul className="menu">
-          <li >
-            <a href="/">
-              <FontAwesomeIcon icon={faHouse} />
-              <span>Website</span>
-            </a>
-          </li>
-          <li className={location.pathname.startsWith('/dashboard/user') ? 'active' : ''}>
+          {/* <li className={location.pathname.startsWith('/dashboard/user') ? 'active' : ''}>
             <a href="/dashboard/user">
               <FontAwesomeIcon icon={faUser} />
               <span>User</span>
             </a>
-          </li>
+          </li> */}
           <li className={location.pathname.startsWith('/dashboard/profile') ? 'active' : ''}>
             <a href="/dashboard/profile">
               <FontAwesomeIcon icon={faIdCard} />
@@ -34,6 +28,12 @@ const Sidebar = () => {
             <a href="/dashboard/enquiry">
               <FontAwesomeIcon icon={faPaperPlane} />
               <span>Enquiry</span>
+            </a>
+          </li>
+          <li className='bottom'>
+            <a href="/">
+              <FontAwesomeIcon icon={faHouse} />
+              <span>Website</span>
             </a>
           </li>
         </ul>

@@ -63,10 +63,34 @@ const EnquiryApi = (baseUrl) => {
       throw error;
     }
   };
+
+  const deleteEnquiryById = async (authToken, id, enquiry) => {
+    try {
+      const response = await fetch(`${baseUrl}/enquiries/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(enquiry),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const enquiryRes = await response.json();
+      return enquiryRes;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     getAllEnquiries,
     getEnquiryById,
     createEnquiry,
+    deleteEnquiryById
   };
 };
 

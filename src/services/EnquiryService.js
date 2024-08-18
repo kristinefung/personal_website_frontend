@@ -30,11 +30,21 @@ const EnquiryService = () => {
         const enquiryRespJson = enquiryResp.data;
         return enquiryRespJson;
     };
+    const deleteEnquiryById = async (id, enquiry) => {
+        const authToken = await tokenStorage.getAuthToken();
+        const enquiryResp = await enquiryApi.deleteEnquiryById(authToken, id, enquiry);
+        if (enquiryResp.status !== 0) {
+            throw new Error(enquiryResp.message);
+        }
+        const enquiryRespJson = enquiryResp.data;
+        return enquiryRespJson;
+    };
 
     return {
         getAllEnquiries,
         getEnquiryById,
-        createEnquiry
+        createEnquiry,
+        deleteEnquiryById
     };
 };
 

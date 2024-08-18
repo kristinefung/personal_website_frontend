@@ -134,6 +134,10 @@ body#website-page {
     gap: 40px;
 }
 
+#website #about-section .about-me .right .btn-row {
+    visibility: hidden;
+}
+
 #website #about-section .about-work,
 #website #about-section .about-education {
     margin-top: 80px;

@@ -44,7 +44,7 @@ function App() {
           <Route path='profile/education/edit/:id' element={<EducationEdit />} />
           <Route path='profile/education/create' element={<EducationCreate />} />
           <Route path='enquiry' element={<EnquiryList />} />
-          <Route path='enquiry/:id' element={<EnquiryEdit />} />
+          <Route path='enquiry/edit/:id' element={<EnquiryEdit />} />
         </Route>
       </Routes>
     </BrowserRouter >
